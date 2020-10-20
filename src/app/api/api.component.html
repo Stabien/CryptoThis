@@ -1,4 +1,8 @@
 <h1>Cours cryptomonnaies</h1>
 <ng-container>
-  <input [(ngModel)]="search" (keyup)="checkInput()"> {{cryptoToDisplay}}
+  <input [(ngModel)]="search" (keyup)="checkInput()">
+  <ul *ngIf="cryptoToDisplay.length > 0">
+    <li *ngFor="let element of cryptoToDisplay" (click)="getCrypto(btc)">{{ element }}</li>
+  </ul>
+  {{ req }}
 </ng-container>

@@ -10,9 +10,9 @@ export class ApiComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   req;
-  priceCrypto = [];
+  btc = 'btceur';
   cryptoToDisplay = [];
-  search = "test";
+  search = "";
   nameCrypto = [
     {
       nameSrc: 'Bitcoin',
@@ -37,6 +37,8 @@ export class ApiComponent implements OnInit {
   ]
 
   getCrypto(name) {
+    this.cryptoToDisplay = [];
+    this.search = "";
     interface Price {
       result: {
         price
@@ -52,7 +54,7 @@ export class ApiComponent implements OnInit {
       for (let i = 0; i < this.search.length; i++)
         if (this.search.toLowerCase()[i] != item.nameSrc.toLowerCase()[i])
           return false;
-      this.cryptoToDisplay.push(item.nameSrc);
+      this.search.length != 0 ? this.cryptoToDisplay.push(item.nameSrc) : null;
     });
   }
 
