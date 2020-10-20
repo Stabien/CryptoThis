@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-init';
+  test = "/user";
+
+  switchRoutes() {
+    if (this.test === "/")
+      this.test = "/user";
+    else
+      this.test = "/";
+  }
 }
