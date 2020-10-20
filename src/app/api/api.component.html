@@ -1,4 +1,4 @@
 <h1>Cours cryptomonnaies</h1>
 <ng-container>
-  <input [(ngModel)]="test"> {{test}}
+  <input [(ngModel)]="search" (keyup)="checkInput()"> {{cryptoToDisplay}}
 </ng-container>

@@ -10,15 +10,31 @@ export class ApiComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   req;
-  nameCrypto = {
-    'Bitcoin': 'btceur',
-    'Etherum': 'etheur',
-    'Tether': 'usdteur',
-    'Xrp': 'xrpeur',
-    'Bitcoin Cash': 'bcheur'
-  };
   priceCrypto = [];
-  test = "test";
+  cryptoToDisplay = [];
+  search = "test";
+  nameCrypto = [
+    {
+      nameSrc: 'Bitcoin',
+      nameTarget: 'btceur'
+    },
+    {
+      nameSrc: 'Ethereum',
+      nameTarget: 'etheur'
+    },
+    {
+      nameSrc: 'Tether',
+      nameTarget: 'usdteur'
+    },
+    {
+      nameSrc: 'XRP',
+      nameTarget: 'xrpeur'
+    },
+    {
+      nameSrc: 'Bitcoin Cash',
+      nameTarget: 'bcheur'
+    }
+  ]
 
   getCrypto(name) {
     interface Price {
@@ -30,7 +46,16 @@ export class ApiComponent implements OnInit {
       .subscribe((value) => this.req = value.result.price);
   }
 
+  checkInput() {
+    this.cryptoToDisplay = [];
+    this.nameCrypto.map((item) => {
+      for (let i = 0; i < this.search.length; i++)
+        if (this.search.toLowerCase()[i] != item.nameSrc.toLowerCase()[i])
+          return false;
+      this.cryptoToDisplay.push(item.nameSrc);
+    });
+  }
+
   ngOnInit() {
-    this.getCrypto('btceur');
   }
 }
