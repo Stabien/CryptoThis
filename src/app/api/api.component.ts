@@ -36,7 +36,17 @@ export class ApiComponent implements OnInit {
     }
   ]
 
+  getTargetName(nameSrc) {
+    let nameTarget;
+    this.nameCrypto.map((item) => {
+      if (nameSrc === item.nameSrc)
+        nameTarget = item.nameTarget;
+    });
+    return nameTarget;
+  }
+  
   getCrypto(name) {
+    name = this.getTargetName(name);
     this.cryptoToDisplay = [];
     this.search = "";
     interface Price {
