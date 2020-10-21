@@ -2,13 +2,5 @@
 app-root {
   display: flex;
   flex-direction: column;
-}
-
-app-api {
-  margin: auto;
-}
-
-.crypto-display {
-  margin: auto;
-  width: fit-content;
+  width: 100%;
 }

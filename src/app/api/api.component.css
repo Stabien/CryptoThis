@@ -1,17 +1,29 @@
+
+h1 {
+  text-align: center;
+}
+
+#search-section {
+  width: 30%;
+  margin: auto;
+}
+
 ul {
-  margin: 0;
-  width: 100%;
+  position: absolute;
+  width: 450px;
   padding: 0;
   border: 1px solid #777777;
   border-top: none;
+  margin-top: 0;
+  box-sizing: border-box;
 }
 
 input {
-  width: calc(100% - 20px);
+  width: 450px;
   height: 40px;
-  margin: 0;
-  padding: 0 10px;
   border: 1px solid black;
+  padding: 5px 10px;
+  box-sizing: border-box;
 }
 
 li {
@@ -34,4 +46,20 @@ img {
 
 span {
   margin: auto 0;
+}
+
+#crypto-selected {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 10%;
+  background: #114695;
+  color: white;
+  padding: 10px 20px;
+  width: fit-content;
+}
+
+.infos-selection {
+  margin: auto 20px;
 }

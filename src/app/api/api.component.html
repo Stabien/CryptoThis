@@ -1,10 +1,18 @@
 <h1>Cours cryptomonnaies</h1>
-<ng-container>
+<div id="search-section">
   <input [(ngModel)]="search" (keyup)="checkInput()">
   <ul *ngIf="cryptoToDisplay.length > 0">
     <li *ngFor="let element of cryptoToDisplay" (click)="getCrypto(element)">
       <img src="../../assets/logo_{{element.toLowerCase()}}.png"><span>{{ element }}</span>
     </li>
   </ul>
-  <div *ngIf="req.price != ''">{{ req.name }} {{ req.price }} EUR</div>
-</ng-container>
+</div>
+<div *ngIf="req.price != ''" id="crypto-selected">
+  <div id="name">{{ req.name }}</div>
+  <div id="price" class="infos-selection">{{ req.price }} EUR</div>
+  <div class="infos-selection">{{ req.price }} EUR</div>
+  <div class="infos-selection">{{ req.price }} EUR</div>
+  <div class="infos-selection">{{ req.price }} EUR</div>
+  <div class="infos-selection">{{ req.price }} EUR</div>
+  <div class="infos-selection">{{ req.price }} EUR</div>
+</div>
