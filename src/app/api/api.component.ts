@@ -9,53 +9,40 @@ import { HttpClient, HttpHeaders, HttpClientModule, HttpParams, HttpHeaderRespon
 export class ApiComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
-  req;
-  btc = 'btceur';
+  req = {
+    name: '',
+    price: ''
+  }
   cryptoToDisplay = [];
   search = "";
-  nameCrypto = [
-    {
-      nameSrc: 'Bitcoin',
-      nameTarget: 'btceur'
-    },
-    {
-      nameSrc: 'Ethereum',
-      nameTarget: 'etheur'
-    },
-    {
-      nameSrc: 'Tether',
-      nameTarget: 'usdteur'
-    },
-    {
-      nameSrc: 'XRP',
-      nameTarget: 'xrpeur'
-    },
-    {
-      nameSrc: 'Bitcoin Cash',
-      nameTarget: 'bcheur'
-    }
-  ]
+  nameCrypto;
 
   getTargetName(nameSrc) {
     let nameTarget;
+
     this.nameCrypto.map((item) => {
       if (nameSrc === item.nameSrc)
         nameTarget = item.nameTarget;
     });
     return nameTarget;
   }
-  
+
   getCrypto(name) {
-    name = this.getTargetName(name);
-    this.cryptoToDisplay = [];
-    this.search = "";
     interface Price {
       result: {
         price
       }
     };
-    this.http.get<Price>('http://localhost:4200/apiRequest/markets/kraken/' + name + '/price?apikey=0L9EW8LR7VATYY5II0LZ')
-      .subscribe((value) => this.req = value.result.price);
+
+    this.cryptoToDisplay = [];
+    this.search = "";
+    this.req.price = "";
+    this.req.name = name;
+    name = this.getTargetName(name);
+
+    this.http.get<Price>('http://localhost:4200/apiRequest/markets/kraken/'
+                         + name + '/price?apikey=0L9EW8LR7VATYY5II0LZ')
+      .subscribe((value) => this.req.price = value.result.price);
   }
 
   checkInput() {
@@ -63,11 +50,15 @@ export class ApiComponent implements OnInit {
     this.nameCrypto.map((item) => {
       for (let i = 0; i < this.search.length; i++)
         if (this.search.toLowerCase()[i] != item.nameSrc.toLowerCase()[i])
-          return false;
+          if (this.search[i] !== ' ')
+            return false;
       this.search.length != 0 ? this.cryptoToDisplay.push(item.nameSrc) : null;
     });
   }
 
   ngOnInit() {
+    fetch('../../assets/data.json')
+      .then(response => response.json())
+      .then(response => this.nameCrypto = response);
   }
 }

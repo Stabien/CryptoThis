@@ -2,7 +2,9 @@
 <ng-container>
   <input [(ngModel)]="search" (keyup)="checkInput()">
   <ul *ngIf="cryptoToDisplay.length > 0">
-    <li *ngFor="let element of cryptoToDisplay" (click)="getCrypto(element)">{{ element }}</li>
+    <li *ngFor="let element of cryptoToDisplay" (click)="getCrypto(element)">
+      <img src="../../assets/logo_{{element.toLowerCase()}}.png"><span>{{ element }}</span>
+    </li>
   </ul>
-  {{ req }}
+  <div *ngIf="req.price != ''">{{ req.name }} {{ req.price }} EUR</div>
 </ng-container>

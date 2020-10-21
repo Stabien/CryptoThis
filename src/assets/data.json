@@ -1,5 +1,22 @@
 [
   {
-    "id": 9
+    "nameSrc": "Bitcoin",
+    "nameTarget": "btceur"
+  },
+  {
+    "nameSrc": "Ethereum",
+    "nameTarget": "etheur"
+  },
+  {
+    "nameSrc": "Tether",
+    "nameTarget": "usdteur"
+  },
+  {
+    "nameSrc": "XRP",
+    "nameTarget": "xrpeur"
+  },
+  {
+    "nameSrc": "Bitcoin Cash",
+    "nameTarget": "bcheur"
   }
 ]
