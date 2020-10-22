@@ -33,7 +33,6 @@ export class ApiComponent implements OnInit {
         price
       }
     };
-
     this.cryptoToDisplay = [];
     this.search = "";
     this.req.price = "";
