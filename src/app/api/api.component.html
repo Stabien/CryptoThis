@@ -1,15 +1,17 @@
 <header>
-  <div class="container">
-    <h1>Cryptonite</h1>
-    <input [(ngModel)]="search" (keyup)="checkInput()">
-    <ul *ngIf="cryptoToDisplay.length > 0">
-      <li *ngFor="let element of cryptoToDisplay" (click)="getCrypto(element)">
-        <img src="../../assets/logo_{{element.toLowerCase()}}.png"><span>{{ element }}</span>
-      </li>
-    </ul>
+  <div id="header-container">
+    <h1>CryptoThis</h1>
+    <div id="input-container">
+      <input [(ngModel)]="search" (keyup)="checkInput()" placeholder="Rechercher...">
+      <ul *ngIf="cryptoToDisplay.length > 0">
+        <li *ngFor="let element of cryptoToDisplay" (click)="getCrypto(element)">
+          <img src="../../assets/logo_{{element.toLowerCase()}}.png"><span>{{ element }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </header>
-<table *ngIf="req.price != ''" id="crypto-selected">
+<table id="crypto-selected">
   <tr id="header-tab" class="tab-crypto">
     <td id="name" class="infos-selection">Name</td>
     <td id="price" class="infos-selection">Price</td>
@@ -19,7 +21,7 @@
     <td class="infos-selection">price</td>
     <td class="infos-selection">price</td>
   </tr>
-  <tr id="display-infos" class="tab-crypto">
+  <tr *ngIf="req.price != ''" id="display-infos" class="tab-crypto">
     <td id="name-display" class="infos-selection">
       <img src="../../assets/logo_{{req.name.toLowerCase()}}.png">
       <span>{{ req.name }}</span>

@@ -4,6 +4,10 @@
     "nameTarget": "btceur"
   },
   {
+    "nameSrc": "Bitcoin Cash",
+    "nameTarget": "bcheur"
+  },
+  {
     "nameSrc": "Ethereum",
     "nameTarget": "etheur"
   },
@@ -14,9 +18,5 @@
   {
     "nameSrc": "XRP",
     "nameTarget": "xrpeur"
-  },
-  {
-    "nameSrc": "Bitcoin Cash",
-    "nameTarget": "bcheur"
   }
 ]
