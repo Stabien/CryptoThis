@@ -13,13 +13,11 @@
 </header>
 <table id="crypto-selected">
   <tr id="header-tab" class="tab-crypto">
-    <td id="name" class="infos-selection">Name</td>
-    <td id="price" class="infos-selection">Price</td>
-    <td class="infos-selection">price</td>
-    <td class="infos-selection">price</td>
-    <td class="infos-selection">price</td>
-    <td class="infos-selection">price</td>
-    <td class="infos-selection">price</td>
+    <td id="name" class="infos-selection">Nom</td>
+    <td id="price" class="infos-selection">Prix actuel</td>
+    <td class="infos-selection">Prix le plus haut</td>
+    <td class="infos-selection">Prix le plus bas</td>
+    <td class="infos-selection">Evolution dernières 24h</td>
   </tr>
   <tr *ngIf="req.price != ''" id="display-infos" class="tab-crypto">
     <td id="name-display" class="infos-selection">
@@ -27,10 +25,8 @@
       <span>{{ req.name }}</span>
     </td>
     <td id="price" class="infos-selection">{{ req.price }} EUR</td>
-    <td class="infos-selection">{{ req.price }} EUR</td>
-    <td class="infos-selection">{{ req.price }} EUR</td>
-    <td class="infos-selection">{{ req.price }} EUR</td>
-    <td class="infos-selection">{{ req.price }} EUR</td>
-    <td class="infos-selection">{{ req.price }} EUR</td>
+    <td class="infos-selection">{{ req.high }} EUR</td>
+    <td class="infos-selection">{{ req.low }} EUR</td>
+    <td class="infos-selection">{{ req.percentage }} %</td>
   </tr>
 </table>

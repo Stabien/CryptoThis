@@ -10,6 +10,8 @@ import { MainComponent } from './main/main.component';
 import { UserComponent } from './user/user.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ApiComponent } from './api/api.component';
+import { SearchComponent } from './search/search.component';
+import { DisplayCryptoComponent } from './display-crypto/display-crypto.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -22,7 +24,9 @@ const routes: Routes = [
     AppComponent,
     MainComponent,
     UserComponent,
-    ApiComponent
+    ApiComponent,
+    SearchComponent,
+    DisplayCryptoComponent
   ],
   imports: [
     BrowserModule,

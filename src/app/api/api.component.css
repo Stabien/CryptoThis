@@ -22,7 +22,7 @@
 header {
   width: 100%;
   height: 100px;
-  background: #26B370;
+  background: #1087F3;
 }
 
 header div {
@@ -109,7 +109,7 @@ span {
 }
 
 table td {
-  width: 100px;
+  width: 150px;
   font-size: 14px;
   text-align: center;
 }
@@ -160,15 +160,15 @@ table td {
 }
 
 #name-display span {
-  width: fit-content;
   margin: auto;
+  margin-left: 5px;
   vertical-align: middle;
-  margin-left: 10px;
   font-size: 16px;
 }
 
 #name-display img {
+  margin: auto;
   height: 40px;
   width: 40px;
-  margin-left: 0px;
+  margin-right: 5px;
 }
