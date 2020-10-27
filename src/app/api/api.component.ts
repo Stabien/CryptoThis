@@ -73,6 +73,8 @@ export class ApiComponent implements OnInit {
       .then(response => response.json())
       .then(response => this.nameCrypto = response);
 
-    setInterval(this.apiRequest(this.getTargetName(this.req.name)), 5000);
+    setInterval(() => {
+      this.apiRequest(this.getTargetName(this.req.name));
+    }, 5000);
   }
 }
