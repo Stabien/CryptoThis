@@ -17,16 +17,16 @@
     <td id="price" class="infos-selection">Prix actuel</td>
     <td class="infos-selection">Prix le plus haut</td>
     <td class="infos-selection">Prix le plus bas</td>
-    <td class="infos-selection">Evolution dernières 24h</td>
+    <td class="infos-selection">Evolution 24h</td>
   </tr>
-  <tr *ngIf="req.price != ''" id="display-infos" class="tab-crypto">
+  <tr *ngFor="let element of req" id="display-infos" class="tab-crypto">
     <td id="name-display" class="infos-selection">
-      <img src="../../assets/logo_{{req.name.toLowerCase()}}.png">
-      <span>{{ req.name }}</span>
+      <img src="../../assets/logo_{{element.name.toLowerCase()}}.png">
+      <span>{{ element.name }}</span>
     </td>
-    <td id="price" class="infos-selection">{{ req.price }} EUR</td>
-    <td class="infos-selection">{{ req.high }} EUR</td>
-    <td class="infos-selection">{{ req.low }} EUR</td>
-    <td class="infos-selection">{{ req.percentage }} %</td>
+    <td class="infos-selection">{{ element.last }} EUR</td>
+    <td class="infos-selection">{{ element.high }} EUR</td>
+    <td class="infos-selection">{{ element.low }} EUR</td>
+    <td class="infos-selection">{{ element.change.percentage }} %</td>
   </tr>
 </table>

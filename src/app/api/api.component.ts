@@ -10,48 +10,60 @@ import { DisplayCryptoComponent } from '../display-crypto/display-crypto.compone
 export class ApiComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
-  req = {
-    name: '',
-    price: '',
-    high: '',
-    low: '',
-    percentage: '',
-    absolute: ''
-  }
-  cryptoToDisplay = [];
-  search = "";
-  nameCrypto;
+  req = []; // Reponse de la requête
+  cryptoToDisplay = [];  // Liste des cryptos à afficher dans les suggestions de la recherche
+  search = "";  // Valeur de l'input recherche
+  data;  // Cryptos présentent dans la bdd, contenant leur nom officiel et leur id de requête
+  actualName = ""; // Nom de la crypto à afficher
 
   getTargetName(nameSrc) {
     let nameTarget;
 
-    if (nameSrc != '')
-      this.nameCrypto.map((item) => {
-        if (nameSrc === item.nameSrc)
-          nameTarget = item.nameTarget;
-      });
+    this.data.map((item) => {
+      if (nameSrc === item.nameSrc)
+        nameTarget = item.nameTarget;
+    });
     return nameTarget;
+  }
+
+  reqIsFilled() {
+    for (const element in this.req)
+      if (this.req[element] == null)
+        return false;
+    return true;
   }
 
   apiRequest(name) {
     if (name != null) {
-      this.http.get('http://localhost:4200/apiRequest/markets/kraken/'
-                    + name + '/summary?apikey=0L9EW8LR7VATYY5II0LZ')
-        .subscribe((value) => {
-          this.req.price = value.result.price.last;
-          this.req.high = value.result.price.high;
-          this.req.low = value.result.price.low;
-          this.req.percentage = Math.round(value.result.price.change.percentage * 10000) / 100;
-          this.req.absolute = value.result.price.change.absolute;
+      interface Result {
+        result: {
+          price: {
+            name: string,
+            last: number,
+            high: number,
+            low: number,
+            change: {
+              percentage: number,
+              absolute: number
+            }
+          }
+        }
+      }
+      this.http.get<Result>('http://localhost:4200/apiRequest/markets/kraken/'
+                            + name + '/summary?apikey=0L9EW8LR7VATYY5II0LZ')
+        .subscribe(value => {
+          value.result.price.name = this.actualName;
+          this.req.push(value.result.price);
         });
+      console.log(this.req);
+      console.log(this.actualName);
     }
   }
 
   getCrypto(name) {
     this.cryptoToDisplay = [];
     this.search = "";
-    this.req.price = "";
-    this.req.name = name;
+    this.actualName = name;
 
     name = this.getTargetName(name);
     this.apiRequest(name);
@@ -59,7 +71,7 @@ export class ApiComponent implements OnInit {
 
   checkInput() {
     this.cryptoToDisplay = [];
-    this.nameCrypto.map((item) => {
+    this.data.map((item) => {
       for (let i = 0; i < this.search.length; i++)
         if (this.search.toLowerCase()[i] != item.nameSrc.toLowerCase()[i])
           if (this.search[i] !== ' ')
@@ -71,10 +83,9 @@ export class ApiComponent implements OnInit {
   ngOnInit() {
     fetch('../../assets/data.json')
       .then(response => response.json())
-      .then(response => this.nameCrypto = response);
-
-    setInterval(() => {
-      this.apiRequest(this.getTargetName(this.req.name));
-    }, 5000);
+      .then(response => this.data = response);
+  /*  setInterval(() => {
+      this.apiRequest(this.getTargetName(this.actualName));
+    }, 5000);*/
   }
 }
