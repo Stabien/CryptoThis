@@ -10,13 +10,9 @@ import { MainComponent } from './main/main.component';
 import { UserComponent } from './user/user.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ApiComponent } from './api/api.component';
-import { SearchComponent } from './search/search.component';
-import { DisplayCryptoComponent } from './display-crypto/display-crypto.component';
 
 const routes: Routes = [
-  { path: 'user', component: UserComponent },
-  { path: 'api', component: ApiComponent},
-  { path: '', component: MainComponent }
+  { path: '', component: ApiComponent }
 ]
 
 @NgModule({
@@ -24,9 +20,7 @@ const routes: Routes = [
     AppComponent,
     MainComponent,
     UserComponent,
-    ApiComponent,
-    SearchComponent,
-    DisplayCryptoComponent
+    ApiComponent
   ],
   imports: [
     BrowserModule,

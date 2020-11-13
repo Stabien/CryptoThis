@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule, HttpParams, HttpHeaderResponse } from '@angular/common/http';
-import { DisplayCryptoComponent } from '../display-crypto/display-crypto.component';
 
 @Component({
   selector: 'app-api',
@@ -34,30 +33,52 @@ export class ApiComponent implements OnInit {
   }
 
   apiRequest(name) {
-    if (name != null) {
-      interface Result {
-        result: {
-          price: {
-            name: string,
-            last: number,
-            high: number,
-            low: number,
-            change: {
-              percentage: number,
-              absolute: number
-            }
+    interface Price {
+      result: {
+        price: {
+          name,
+          change: {
+            percentage
           }
         }
       }
-      this.http.get<Result>('http://localhost:4200/apiRequest/markets/kraken/'
-                            + name + '/summary?apikey=0L9EW8LR7VATYY5II0LZ')
+    }
+    if (name != null) {
+      this.http.get<Price>('http://localhost:4200/apiRequest/markets/kraken/'
+                            + name + '/summary?apikey=yourAPIKey')
         .subscribe(value => {
           value.result.price.name = this.actualName;
+          value.result.price.change.percentage = Math.round(value.result.price.change.percentage * 10000) / 100;
           this.req.push(value.result.price);
         });
       console.log(this.req);
       console.log(this.actualName);
     }
+  }
+
+  apiUpdate() {
+    interface Price {
+      result: {
+        price: {
+          name,
+          change: {
+            percentage
+          }
+        }
+      }
+    }
+    if (this.req.length > 0)
+      this.req.forEach((item, index) => {
+        let name = this.getTargetName(item.name);
+        this.http.get<Price>('http://localhost:4200/apiRequest/markets/kraken/'
+                              + name + '/summary?apikey=yourAPIKey')
+          .subscribe(value => {
+            value.result.price.name = item.name;
+            value.result.price.change.percentage = Math.round(value.result.price.change.percentage * 10000) / 100;
+            this.req[index] = value.result.price;
+          });
+      });
+    console.log(this.req);
   }
 
   getCrypto(name) {
@@ -84,8 +105,8 @@ export class ApiComponent implements OnInit {
     fetch('../../assets/data.json')
       .then(response => response.json())
       .then(response => this.data = response);
-  /*  setInterval(() => {
-      this.apiRequest(this.getTargetName(this.actualName));
-    }, 5000);*/
+    setInterval(() => {
+      this.apiRequest(this.apiUpdate());
+    }, 15000);
   }
 }

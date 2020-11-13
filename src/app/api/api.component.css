@@ -150,12 +150,16 @@ table td {
   font-size: 16px;
 }
 
-#display-infos {
+.display-infos {
   margin-top: 0;
   color: black;
   background: aliceBlue;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.display-infos:nth-child(odd) {
+  background: white;
 }
 
 #name-display {
