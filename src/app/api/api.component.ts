@@ -45,7 +45,7 @@ export class ApiComponent implements OnInit {
     }
     if (name != null) {
       this.http.get<Price>('http://localhost:4200/apiRequest/markets/kraken/'
-                            + name + '/summary?apikey=yourAPIKey')
+                            + name + '/summary?apikey=APIKEY')
         .subscribe(value => {
           value.result.price.name = this.actualName;
           value.result.price.change.percentage = Math.round(value.result.price.change.percentage * 10000) / 100;
@@ -71,7 +71,7 @@ export class ApiComponent implements OnInit {
       this.req.forEach((item, index) => {
         let name = this.getTargetName(item.name);
         this.http.get<Price>('http://localhost:4200/apiRequest/markets/kraken/'
-                              + name + '/summary?apikey=yourAPIKey')
+                              + name + '/summary?apikey=APIKEY')
           .subscribe(value => {
             value.result.price.name = item.name;
             value.result.price.change.percentage = Math.round(value.result.price.change.percentage * 10000) / 100;

@@ -6,8 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './main/main.component';
-import { UserComponent } from './user/user.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ApiComponent } from './api/api.component';
 
@@ -18,8 +16,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    UserComponent,
     ApiComponent
   ],
   imports: [

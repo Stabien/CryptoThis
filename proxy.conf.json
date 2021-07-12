@@ -1,5 +1,5 @@
 {
-  "/apiRequest": {
+  "/apiRequest/": {
      "target": "https://api.cryptowat.ch/",
      "secure": false,
      "pathRewrite": {
